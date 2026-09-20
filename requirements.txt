@@ -4,7 +4,7 @@ Django==5.2.13
 gunicorn==26.2.0
 joblib==1.6.0
 narwhals==2.26.0
-numpy==2.5.3
+numpy==1.26.4
 pandas==3.0.6
 python-dateutil==2.9.0.post0
 scikit-learn==1.4.2
