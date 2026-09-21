@@ -4,282 +4,276 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Automobile Price Prediction</title>
 
     <link rel="stylesheet"
           href="{% static 'predictor/css/style.css' %}">
+
 </head>
+
 
 <body>
 
-    <div class="background"></div>
 
-    <main class="container">
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-        <!-- HEADER -->
-        <header class="header">
+    <header>
 
-            <div class="logo">
-                🚗 AutoPredict
-            </div>
+        <div class="logo">
+            🚗 AutoPredict
+        </div>
 
-            <div class="header-text">
-                Machine Learning Powered
-            </div>
+        <div class="subtitle">
+            Machine Learning Powered
+        </div>
 
-        </header>
-
-
-        <!-- TITLE -->
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <p class="small-title">
-                    MACHINE LEARNING PROJECT
-                </p>
-
-                <h1>
-                    Automobile Price
-                    <span>Prediction</span>
-                </h1>
-
-                <p class="description">
-                    Predict the estimated automobile price using
-                    a trained Random Forest machine learning model.
-                </p>
-
-            </div>
-
-        </section>
+    </header>
 
 
-        <!-- PREDICTION CARD -->
-        <section class="prediction-section">
 
-            <div class="card">
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
 
-                <div class="card-header">
+    <section class="hero">
 
-                    <h2>
-                        Enter Automobile Details
-                    </h2>
+        <h1>
+            Automobile Price Prediction
+        </h1>
 
-                    <p>
-                        Enter the vehicle specifications below
-                    </p>
+        <p>
+            Predict the estimated automobile price using a trained
+            Random Forest machine learning model.
+        </p>
 
-                </div>
-
-
-                <!-- FORM -->
-                <form method="POST" id="predictionForm">
-
-                    {% csrf_token %}
-
-                    <!-- FOUR COLUMNS -->
-                    <div class="input-grid">
+    </section>
 
 
-                        <!-- ENGINE SIZE -->
-                        <div class="input-group">
 
-                            <label for="engine_size">
-                                Engine Size
-                            </label>
+    <!-- =========================
+         FORM
+    ========================== -->
 
-                            <input
-                                type="number"
-                                step="any"
-                                name="engine_size"
-                                id="engine_size"
-                                placeholder="Example: 120"
-                                required
-                            >
+    <div class="form-container">
 
-                        </div>
+        <h2>
+            Enter Automobile Details
+        </h2>
+
+        <p>
+            Enter the vehicle specifications below
+        </p>
 
 
-                        <!-- HORSEPOWER -->
-                        <div class="input-group">
+        <form method="POST">
 
-                            <label for="horsepower">
-                                Horsepower
-                            </label>
-
-                            <input
-                                type="number"
-                                step="any"
-                                name="horsepower"
-                                id="horsepower"
-                                placeholder="Example: 100"
-                                required
-                            >
-
-                        </div>
+            {% csrf_token %}
 
 
-                        <!-- CURB WEIGHT -->
-                        <div class="input-group">
+            <!-- ENGINE SIZE -->
 
-                            <label for="curb_weight">
-                                Curb Weight
-                            </label>
+            <div class="form-group">
 
-                            <input
-                                type="number"
-                                step="any"
-                                name="curb_weight"
-                                id="curb_weight"
-                                placeholder="Example: 2500"
-                                required
-                            >
+                <label for="engine_size">
+                    Engine Size
+                </label>
 
-                        </div>
-
-
-                        <!-- HIGHWAY MPG -->
-                        <div class="input-group">
-
-                            <label for="highway_mpg">
-                                Highway MPG
-                            </label>
-
-                            <input
-                                type="number"
-                                step="any"
-                                name="highway_mpg"
-                                id="highway_mpg"
-                                placeholder="Example: 30"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- PREDICT BUTTON -->
-                    <button
-                        type="submit"
-                        class="predict-button">
-
-                        🚘 Predict Automobile Price
-
-                    </button>
-
-                </form>
-
-
-                <!-- LOADING -->
-                <div id="loading" class="loading">
-
-                    <div class="spinner"></div>
-
-                    <p>
-                        Analyzing automobile data...
-                    </p>
-
-                </div>
-
-
-                <!-- RESULT -->
-                {% if prediction %}
-
-                <div
-                    class="result-card"
-                    id="predictionResult"
-                    data-price="{{ prediction|floatformat:2 }}"
+                <input
+                    type="number"
+                    id="engine_size"
+                    name="engine_size"
+                    placeholder="Example: 120"
+                    step="any"
+                    required
                 >
 
-                    <p class="result-label">
-                        ESTIMATED AUTOMOBILE PRICE
-                    </p>
-
-                    <h2>
-                        ${{ prediction|floatformat:2 }}
-                    </h2>
-
-                    <p class="result-message">
-                        Prediction generated using
-                        Random Forest Regression
-                    </p>
+            </div>
 
 
-                    <!-- VOICE STATUS -->
-                    <p id="voiceStatus" class="voice-status">
-                        🔊 Reading prediction...
-                    </p>
 
+            <!-- HORSEPOWER -->
 
-                    <!-- MANUAL VOICE FALLBACK -->
-                    <button
-                        type="button"
-                        class="voice-button"
-                        onclick="speakPrediction()">
+            <div class="form-group">
 
-                        🔊 Read Prediction Again
+                <label for="horsepower">
+                    Horsepower
+                </label>
 
-                    </button>
-
-                </div>
-
-                {% endif %}
+                <input
+                    type="number"
+                    id="horsepower"
+                    name="horsepower"
+                    placeholder="Example: 100"
+                    step="any"
+                    required
+                >
 
             </div>
 
-        </section>
 
 
-        <!-- ANIMATED AUTOMOBILE ROAD -->
-        <section class="animation-section">
+            <!-- CURB WEIGHT -->
 
-            <div class="road-container">
+            <div class="form-group">
 
-                <div class="sky">
+                <label for="curb_weight">
+                    Curb Weight
+                </label>
 
-                    <div class="sun"></div>
-
-                    <div class="cloud cloud-one"></div>
-
-                    <div class="cloud cloud-two"></div>
-
-                </div>
-
-
-                <div class="road">
-
-                    <div class="road-line"></div>
-
-                    <div class="car">
-                        🚗
-                    </div>
-
-                </div>
+                <input
+                    type="number"
+                    id="curb_weight"
+                    name="curb_weight"
+                    placeholder="Example: 2500"
+                    step="any"
+                    required
+                >
 
             </div>
 
-        </section>
 
 
-        <!-- FOOTER -->
-        <footer>
+            <!-- HIGHWAY MPG -->
 
-            <p>
-                Automobile Price Prediction
-                • Random Forest Machine Learning
-            </p>
+            <div class="form-group">
 
-        </footer>
+                <label for="highway_mpg">
+                    Highway MPG
+                </label>
 
-    </main>
+                <input
+                    type="number"
+                    id="highway_mpg"
+                    name="highway_mpg"
+                    placeholder="Example: 30"
+                    step="any"
+                    required
+                >
+
+            </div>
 
 
-    <!-- JAVASCRIPT -->
+
+            <!-- PREDICT BUTTON -->
+
+            <button type="submit">
+
+                🚗 Predict Automobile Price
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =========================
+             LOADING
+        ========================== -->
+
+        <div class="loading">
+
+            <div class="spinner"></div>
+
+            <span>
+                Analyzing automobile data...
+            </span>
+
+        </div>
+
+
+
+        <!-- =========================
+             RESULT
+        ========================== -->
+
+        <div
+            class="result"
+            id="resultBox"
+            style="display: none;"
+        >
+
+            <h2>
+                Predicted Automobile Price
+            </h2>
+
+            <div
+                class="price"
+                id="predictionPrice"
+            >
+                ₹0.00
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         CAR ANIMATION
+    ========================== -->
+
+    <section class="animation-section">
+
+
+        <!-- SUN -->
+
+        <div class="sun"></div>
+
+
+        <!-- CLOUDS -->
+
+        <div class="cloud cloud1"></div>
+
+        <div class="cloud cloud2"></div>
+
+
+        <!-- ROAD -->
+
+        <div class="road">
+
+            <div class="road-line"></div>
+
+        </div>
+
+
+        <!-- CAR -->
+
+        <div class="car"></div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        Automobile Price Prediction
+        • Machine Learning Project
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
     <script src="{% static 'predictor/js/script.js' %}"></script>
+
 
 </body>
 
