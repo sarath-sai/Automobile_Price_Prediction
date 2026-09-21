@@ -1,96 +1,294 @@
-/* =========================
-   MAIN PAGE
-========================= */
-
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+
+html,
 body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: white;
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
 
     background:
-        radial-gradient(circle at 20% 20%, #164e78 0%, transparent 35%),
-        radial-gradient(circle at 80% 30%, #102a56 0%, transparent 40%),
-        linear-gradient(135deg, #061426, #0b2545, #07182d);
+        linear-gradient(
+            135deg,
+            #16486d 0%,
+            #102f51 45%,
+            #071c38 100%
+        );
+
+    color: white;
 
     overflow-x: hidden;
 }
 
 
 /* =========================
-   HEADER
+   BACKGROUND
 ========================= */
 
-header {
-    text-align: center;
-    padding: 25px 15px 10px;
-}
+.background {
+    position: fixed;
+    inset: 0;
 
-.logo {
-    font-size: 18px;
-    font-weight: bold;
-}
+    overflow: hidden;
 
-.subtitle {
-    margin-top: 5px;
-    opacity: 0.75;
+    pointer-events: none;
+
+    z-index: 0;
 }
 
 
-/* =========================
-   HERO
-========================= */
+.sun {
+    position: absolute;
 
-.hero {
-    text-align: center;
-    padding: 25px 15px 10px;
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff4b0 0%,
+            #ffd86b 45%,
+            rgba(255, 216, 107, 0.2) 70%,
+            transparent 72%
+        );
+
+    top: 80px;
+    right: 120px;
+
+    opacity: 0.85;
 }
 
-.hero h1 {
-    font-size: 42px;
-    margin: 10px 0;
-    color: #ffffff;
-}
 
-.hero p {
-    color: #c8d8e8;
-    font-size: 16px;
-}
+.cloud {
+    position: absolute;
 
-
-/* =========================
-   FORM CONTAINER
-========================= */
-
-.form-container {
-    width: 90%;
-    max-width: 600px;
-    margin: 25px auto;
-
-    padding: 30px;
+    width: 140px;
+    height: 42px;
 
     background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
+
+    border-radius: 50px;
+
+    filter: blur(1px);
+}
+
+
+.cloud::before,
+.cloud::after {
+    content: "";
+
+    position: absolute;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+}
+
+
+.cloud::before {
+    width: 55px;
+    height: 55px;
+
+    left: 25px;
+    bottom: 5px;
+}
+
+
+.cloud::after {
+    width: 70px;
+    height: 70px;
+
+    right: 20px;
+    bottom: 2px;
+}
+
+
+.cloud-one {
+    top: 130px;
+    left: -180px;
+
+    animation: cloudMove 32s linear infinite;
+}
+
+
+.cloud-two {
+    top: 260px;
+    left: -260px;
+
+    transform: scale(0.75);
+
+    animation: cloudMove 42s linear infinite;
+}
+
+
+.cloud-three {
+    top: 390px;
+    left: -300px;
+
+    transform: scale(0.55);
+
+    animation: cloudMove 50s linear infinite;
+}
+
+
+@keyframes cloudMove {
+
+    from {
+        transform: translateX(-200px);
+    }
+
+    to {
+        transform: translateX(calc(100vw + 400px));
+    }
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    padding-top: 20px;
+
+    padding-bottom: 230px;
+
+    text-align: center;
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
+    margin-bottom: 48px;
+}
+
+
+.brand-name {
+    font-size: 21px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+
+    margin-bottom: 5px;
+}
+
+
+.brand-subtitle {
+    color: #b9c9da;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   MAIN TITLE
+========================= */
+
+h1 {
+
+    font-size: 48px;
+
+    line-height: 1.15;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 20px;
+}
+
+
+.description {
+
+    font-size: 18px;
+
+    color: #d2dce8;
+
+    max-width: 800px;
+
+    margin: 0 auto 56px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.prediction-card {
+
+    width: min(660px, calc(100% - 32px));
+
+    margin: 0 auto;
+
+    padding: 31px 33px 36px;
+
+    background:
+        rgba(45, 77, 111, 0.72);
+
+    border:
+
+        1px solid
+        rgba(255, 255, 255, 0.16);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
     backdrop-filter: blur(12px);
 
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.35);
+    text-align: left;
 }
 
-.form-container h2 {
+
+.card-heading {
+
     text-align: center;
-    margin-top: 0;
+
+    font-size: 27px;
+
+    font-weight: 800;
+
+    margin-bottom: 18px;
 }
 
-.form-container p {
+
+.card-subheading {
+
     text-align: center;
-    color: #b9c9d8;
+
+    color: #c5d0dd;
+
+    font-size: 18px;
+
+    margin-bottom: 20px;
 }
 
 
@@ -98,33 +296,65 @@ header {
    INPUTS
 ========================= */
 
-.form-group {
-    margin: 15px 0;
+.input-group {
+
+    margin-bottom: 15px;
 }
 
-.form-group label {
+
+.input-group label {
+
     display: block;
-    margin-bottom: 7px;
-    font-weight: bold;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 12px 14px;
 
-    border: 1px solid #58738e;
+.input-group input {
+
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    outline: none;
+
     border-radius: 10px;
 
-    background: rgba(255, 255, 255, 0.95);
-    color: #111;
+    padding: 0 16px;
 
-    font-size: 16px;
+    font-size: 17px;
+
+    background: #f3f4f6;
+
+    color: #333;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
-.form-group input:focus {
-    outline: none;
-    border-color: #4db8ff;
-    box-shadow: 0 0 10px rgba(77, 184, 255, 0.35);
+
+.input-group input::placeholder {
+
+    color: #7a7a7a;
+}
+
+
+.input-group input:focus {
+
+    box-shadow:
+        0 0 0 3px
+        rgba(55, 159, 255, 0.35);
+
+    transform: translateY(-1px);
 }
 
 
@@ -132,29 +362,52 @@ header {
    BUTTON
 ========================= */
 
-button {
-    width: 100%;
-    margin-top: 15px;
+.predict-button {
 
-    padding: 14px;
+    width: 100%;
+
+    height: 50px;
+
+    margin-top: 10px;
 
     border: none;
+
     border-radius: 10px;
 
-    background: linear-gradient(135deg, #168cff, #0064c8);
+    background:
+        linear-gradient(
+            90deg,
+            #178df0,
+            #1883e2
+        );
 
     color: white;
+
     font-size: 17px;
-    font-weight: bold;
+
+    font-weight: 700;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-button:hover {
+
+.predict-button:hover {
+
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 140, 255, 0.35);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 132, 255, 0.3);
+}
+
+
+.predict-button:active {
+
+    transform: translateY(0);
 }
 
 
@@ -163,30 +416,45 @@ button:hover {
 ========================= */
 
 .loading {
+
     display: none;
 
-    justify-content: center;
     align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
     gap: 10px;
 
-    margin-top: 20px;
+    margin-top: 25px;
 
-    color: #bde5ff;
+    color: #dbe7f3;
 }
 
-.spinner {
-    width: 22px;
-    height: 22px;
 
-    border: 3px solid rgba(255,255,255,0.3);
-    border-top-color: #4db8ff;
+.spinner {
+
+    width: 32px;
+
+    height: 32px;
 
     border-radius: 50%;
 
-    animation: spin 0.8s linear infinite;
+    border:
+
+        4px solid
+        rgba(255, 255, 255, 0.25);
+
+    border-top-color: #2196f3;
+
+    animation:
+        spin 0.8s linear infinite;
 }
 
+
 @keyframes spin {
+
     to {
         transform: rotate(360deg);
     }
@@ -198,130 +466,74 @@ button:hover {
 ========================= */
 
 .result {
+
     margin-top: 25px;
+
+    padding: 25px;
 
     text-align: center;
 
-    padding: 20px;
-
-    background: rgba(0, 180, 255, 0.10);
-
-    border: 1px solid rgba(80, 190, 255, 0.35);
-
     border-radius: 15px;
-}
-
-.result h2 {
-    margin-bottom: 10px;
-}
-
-.price {
-    font-size: 34px;
-    font-weight: bold;
-    color: #54c7ff;
-}
-
-
-/* =========================
-   CAR ANIMATION AREA
-========================= */
-
-.animation-section {
-    position: relative;
-
-    width: 100%;
-    height: 210px;
-
-    margin-top: 35px;
-
-    overflow: hidden;
 
     background:
-        linear-gradient(
-            to bottom,
-            #71c8ff 0%,
-            #b8e5ff 55%,
-            #5b9b4a 55%,
-            #477b3a 72%,
-            #20252b 72%,
-            #15181c 100%
-        );
+        rgba(7, 27, 53, 0.55);
 
-    border-top: 2px solid rgba(255,255,255,0.15);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    animation:
+        resultAppear 0.5s ease;
 }
 
 
-/* Sun */
+@keyframes resultAppear {
 
-.sun {
-    position: absolute;
+    from {
 
-    width: 55px;
-    height: 55px;
+        opacity: 0;
 
-    border-radius: 50%;
+        transform:
+            translateY(12px);
 
-    background: #ffe477;
+    }
 
-    top: 25px;
-    right: 12%;
+    to {
 
-    box-shadow: 0 0 35px rgba(255, 228, 119, 0.7);
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
 }
 
 
-/* Clouds */
+.result h2 {
 
-.cloud {
-    position: absolute;
+    font-size: 21px;
 
-    width: 100px;
-    height: 30px;
-
-    background: white;
-
-    border-radius: 30px;
-
-    opacity: 0.75;
+    margin-bottom: 12px;
 }
 
-.cloud::before,
-.cloud::after {
-    content: "";
 
-    position: absolute;
+.price {
 
-    background: white;
+    font-size: 38px;
 
-    border-radius: 50%;
+    font-weight: 800;
+
+    color: #66c3ff;
+
+    margin-bottom: 8px;
 }
 
-.cloud::before {
-    width: 45px;
-    height: 45px;
 
-    left: 15px;
-    top: -20px;
-}
+.result-note {
 
-.cloud::after {
-    width: 55px;
-    height: 55px;
+    color: #b9c9da;
 
-    right: 10px;
-    top: -28px;
-}
-
-.cloud1 {
-    top: 40px;
-    left: 12%;
-}
-
-.cloud2 {
-    top: 75px;
-    left: 55%;
-
-    transform: scale(0.7);
+    font-size: 13px;
 }
 
 
@@ -330,184 +542,227 @@ button:hover {
 ========================= */
 
 .road {
-    position: absolute;
 
-    left: 0;
+    position: fixed;
+
+    z-index: 3;
+
     bottom: 0;
 
-    width: 100%;
-    height: 58px;
+    left: 0;
 
-    background: #20252b;
+    width: 100%;
+
+    height: 125px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #30343a,
+            #17191d
+        );
+
+    border-top:
+        3px solid
+        rgba(255, 255, 255, 0.08);
+
+    overflow: hidden;
 }
+
+
+/* =========================
+   ROAD LINES
+========================= */
 
 .road-line {
+
     position: absolute;
 
-    left: 0;
-    top: 25px;
+    width: 130px;
 
-    width: 100%;
-    height: 5px;
+    height: 6px;
 
-    background: repeating-linear-gradient(
-        to right,
-        white 0,
-        white 70px,
-        transparent 70px,
-        transparent 130px
-    );
+    background: #e6e6e6;
 
-    animation: roadMove 1s linear infinite;
+    top: 58px;
+
+    border-radius: 10px;
+
+    opacity: 0.75;
 }
 
+
+.road-line-one {
+
+    left: -150px;
+
+    animation:
+        roadMove 2.5s linear infinite;
+}
+
+
+.road-line-two {
+
+    left: 40%;
+
+    animation:
+        roadMove 2.5s linear infinite;
+
+    animation-delay: 0.8s;
+}
+
+
+.road-line-three {
+
+    left: 80%;
+
+    animation:
+        roadMove 2.5s linear infinite;
+
+    animation-delay: 1.6s;
+}
+
+
 @keyframes roadMove {
+
     from {
-        transform: translateX(0);
+
+        transform:
+            translateX(-100px);
+
     }
 
     to {
-        transform: translateX(-60px);
+
+        transform:
+            translateX(calc(100vw + 200px));
+
     }
 }
 
 
 /* =========================
-   NORMAL SMALL CAR
-   RIGHT → LEFT
+   CAR ANIMATION
 ========================= */
 
-.car {
-    position: absolute;
-
-    width: 125px;
-    height: 38px;
-
-    bottom: 43px;
-
-    left: 110%;
-
-    background: linear-gradient(
-        to bottom,
-        #ff4b4b,
-        #d71920
-    );
-
-    border-radius: 28px 35px 8px 8px;
-
-    box-shadow:
-        0 8px 10px rgba(0,0,0,0.35);
-
-    animation: carMove 7s linear infinite;
-
-    z-index: 5;
-}
-
-
-/* Car roof / windows */
-
-.car::before {
-    content: "";
+.animated-car {
 
     position: absolute;
 
-    width: 67px;
-    height: 28px;
+    left: -100px;
 
-    left: 32px;
-    top: -22px;
+    bottom: 31px;
 
-    background: linear-gradient(
-        135deg,
-        #d8f3ff,
-        #37617c
-    );
+    font-size: 52px;
 
-    border: 2px solid #ffffff;
-
-    border-radius: 25px 25px 4px 4px;
-
-    transform: skewX(-12deg);
-}
-
-
-/* Wheels */
-
-.car::after {
-    content: "";
-
-    position: absolute;
-
-    width: 24px;
-    height: 24px;
-
-    left: 16px;
-    bottom: -12px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #d7d7d7 0 18%,
-            #111 20% 55%,
-            #050505 57%
+    filter:
+        drop-shadow(
+            0 8px 5px
+            rgba(0, 0, 0, 0.45)
         );
 
-    box-shadow:
-        68px 0 0 #111;
+    animation:
+        carDrive 7s linear infinite;
 }
 
 
-/* Right → Left movement */
+@keyframes carDrive {
 
-@keyframes carMove {
+    from {
 
-    0% {
-        left: 110%;
+        left: -100px;
+
     }
 
-    100% {
-        left: -150px;
+    to {
+
+        left: calc(100vw + 100px);
+
     }
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    text-align: center;
-
-    padding: 20px;
-
-    color: #91a9bd;
-
-    font-size: 13px;
 }
 
 
 /* =========================
-   MOBILE
+   RESPONSIVE
 ========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
-    .hero h1 {
-        font-size: 30px;
+    .page {
+
+        padding-top: 18px;
+
+        padding-bottom: 190px;
     }
 
-    .form-container {
-        padding: 20px;
+
+    .brand {
+
+        margin-bottom: 32px;
     }
 
-    .animation-section {
-        height: 180px;
+
+    h1 {
+
+        font-size: 34px;
+
+        padding: 0 15px;
     }
 
-    .car {
-        transform: scale(0.85);
-        transform-origin: bottom;
+
+    .description {
+
+        font-size: 15px;
+
+        padding: 0 20px;
+
+        margin-bottom: 35px;
     }
+
+
+    .prediction-card {
+
+        padding: 25px 20px 30px;
+    }
+
+
+    .card-heading {
+
+        font-size: 23px;
+    }
+
+
+    .card-subheading {
+
+        font-size: 15px;
+    }
+
+
+    .input-group input {
+
+        height: 46px;
+
+        font-size: 16px;
+    }
+
+
+    .price {
+
+        font-size: 31px;
+    }
+
+
+    .road {
+
+        height: 105px;
+    }
+
+
+    .animated-car {
+
+        font-size: 42px;
+
+        bottom: 25px;
+    }
+
 }

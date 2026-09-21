@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const formattedPrice =
                 price.toLocaleString(
-                    "en-IN",
+                    "en-US",
                     {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (predictionPrice) {
 
                 predictionPrice.textContent =
-                    "₹" + formattedPrice;
+                    "$" + formattedPrice;
             }
 
 
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     new SpeechSynthesisUtterance(
                         "The predicted price is " +
                         price.toFixed(2) +
-                        " rupees."
+                        " dollars."
                     );
 
 
